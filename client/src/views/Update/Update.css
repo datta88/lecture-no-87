@@ -1,0 +1,36 @@
+.input-box-contener-update{
+    height: 400px;
+    width: 500px;
+    
+    text-align: center;
+    margin: 50px auto;
+    display: block;
+   
+}
+.input-box-update{
+    padding: 10px;
+    font-size: 25px;
+    margin: 20px;
+    width: 600px;
+    border: none;
+    border-bottom: 1px solid black;
+}
+.btn-update{
+    padding: 5px 30px;
+    border: none;
+    cursor: pointer;
+    display: block;
+    margin: 20px auto;
+    font-size: 25px;
+    border-radius: 30px;
+    background-color:cornflowerblue;
+}
+.update-card-container{
+   
+    text-align: center;
+    margin-top: 50px;
+   
+}
+.font-paragraph{
+    font-size: 30px;
+}

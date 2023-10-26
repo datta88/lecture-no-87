@@ -1,0 +1,32 @@
+.input-box-contener{
+    height: 400px;
+    width: 500px;
+    
+    text-align: center;
+    margin: 50px auto;
+    display: block;
+   
+}
+.input-box{
+    padding: 10px;
+    font-size: 25px;
+    border-radius: 25px;
+    margin: 20px;
+    width: 400px;
+}
+.btn-add{
+    padding: 5px 30px;
+    border: none;
+    cursor: pointer;
+    display: block;
+    margin: 20px auto;
+    font-size: 25px;
+    border-radius: 30px;
+    background-color:cornflowerblue;
+}
+.add-card-container{
+   
+    text-align: center;
+    margin-top: 50px;
+   
+}
