@@ -2,7 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 dotenv.config();
-import Product from "./../server/src/model/Product.js";
+import Product from "./src/model/Product.js";
 
 const app = express();
 
@@ -28,46 +28,45 @@ app.get('/products', async (req, res) => {
 });
 
 app.post('/product', async (req, res) => {
-    const {image, name, description, price, brand } = req.body;
+    const { name, description, price, brand,image } = req.body;
 
     if (!image) {
         return res.json({
             success: false,
-            message: 'image is required',
+            message: 'image is requied',
         })
     }
-
     if (!name) {
         return res.json({
             success: false,
-            message: 'Name is required',
+            message: 'Name is requied',
         })
     }
     if (!description) {
         return res.json({
             success: false,
-            message: 'description is required',
+            message: 'description is requied',
         })
     }
     if (!price) {
         return res.json({
             success: false,
-            message: 'price is required',
+            message: 'price is requied',
         })
     }
     if (!brand) {
         return res.json({
             success: false,
-            message: 'brand is required',
+            message: 'brand is requied',
         })
     }
 
     const pro = new Product({
-        image:image,
         name: name,
         description: description,
         price: price,
-        brand: brand
+        brand: brand,
+        image:image
     });
 
     const saveProduct = await pro.save();
@@ -79,8 +78,8 @@ app.post('/product', async (req, res) => {
 });
 
 app.get('/product/:_id', async (req, res) => {
-    const { _id } = req.params;
-    const product = await Product.findOne({ _id: _id });
+    const {_id } = req.params;
+    const product = await Product.findOne({ _id:_id});
     res.json({
         success: true,
         data: product,
@@ -88,13 +87,15 @@ app.get('/product/:_id', async (req, res) => {
     })
 });
 
-app.delete('/product/:_id', async (req, res) => {
-    const { _id } = req.params;
-    await Product.deleteOne({ _id: _id })
+app.delete('/product/:id', async (req, res) => {
+    const { id } = req.params;
+    await Product.deleteOne({ _id: id })
+
+    // const del = await Product.deleteOne({_id: _id});
 
     res.json({
         success: true,
-        data:{},
+        // data:del,
         message: 'delete successfull',
     })
 });
@@ -102,37 +103,36 @@ app.delete('/product/:_id', async (req, res) => {
 app.put('/product/:_id', async (req, res) => {
     const { _id } = req.params;
 
-    const {image, name, description, price, brand } = req.body;
+    const { name, description, price, brand ,image} = req.body;
 
     if (!image) {
         return res.json({
             success: false,
-            message: 'image is required',
+            message: 'image is requied',
         })
     }
-
     if (!name) {
         return res.json({
             success: false,
-            message: 'Name is required',
+            message: 'Name is requied',
         })
     }
     if (!description) {
         return res.json({
             success: false,
-            message: 'description is required',
+            message: 'description is requied',
         })
     }
     if (!price) {
         return res.json({
             success: false,
-            message: 'price is required',
+            message: 'price is requied',
         })
     }
     if (!brand) {
         return res.json({
             success: false,
-            message: 'brand is required',
+            message: 'brand is requied',
         })
     }
 
@@ -157,11 +157,11 @@ app.put('/product/:_id', async (req, res) => {
 
 app.patch('/product/:_id', async(req,res)=>{
     const {_id}=req.params ;
-    const {image,name, description, price, brand } = req.body;
+    const {name, description, price, brand ,image} = req.body;
 
     const products = await Product.findOne({_id:_id})
     if(image){
-        prompts.image=image;
+        products.image=image;
     }
     if(name){
         products.name=name;

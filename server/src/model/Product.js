@@ -7,5 +7,5 @@ const productSchema = new Schema({
     price :Number,
     brand : String,
 })
-const Product =model ('product',productSchema);
+const Product = model ('Product',productSchema);
 export default Product

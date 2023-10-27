@@ -9,22 +9,24 @@ function Update() {
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
     const [brand, setBrand] = useState('');
+    const [image, setImage] = useState('');
 
     const {id} = useParams();
 
     const loadProduc = async () => {
         const response = await axios.get(`/product/${id}`)
 
-        const {name,description,price,brand} = response?.data?.data;
+        const {name,description,price,brand,image} = response?.data?.data;
         
             setName(name)
             setDescription(description)
             setPrice(price)
             setBrand(brand)
+            setImage(image)
         }
 
     useEffect(() =>{
-        loadProduc()
+        loadProduc();
     },[])
 
     const updateProduct = async () => {
@@ -32,7 +34,8 @@ function Update() {
         name,
         description,
         price,
-        brand
+        brand,
+        image
       }
       const response = await axios.put(`/product/${id}`,updateProduct)
       alert(response?.data?.message)
@@ -47,6 +50,7 @@ function Update() {
                         <input type="text" onChange={(e) => { setDescription(e.target.value) }} value={description} placeholder="Description" className="input-box-update"/>
                         <input type="text" onChange={(e) => { setPrice(e.target.value) }} value={price} placeholder="Price" className="input-box-update" />
                         <input type="text" onChange={(e) => { setBrand(e.target.value) }} value={brand} placeholder="brand" className="input-box-update" />
+                        <input type="text" onChange={(e) => { setImage(e.target.value) }} value={image} placeholder="Image URL" className="input-box-update" />
                         <button type="button" onClick={updateProduct} className="btn-update" >update</button>
                     </form>
                 </div>
